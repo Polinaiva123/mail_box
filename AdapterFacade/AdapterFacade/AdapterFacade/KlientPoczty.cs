@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace AdapterFacade
 {
+    // Facade
     internal class KlientPoczty
     {
         private List<Skrzynka> skrzynkiPocztowe;
