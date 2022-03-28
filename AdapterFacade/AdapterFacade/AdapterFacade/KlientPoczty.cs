@@ -9,11 +9,11 @@ namespace AdapterFacade
     // Facade
     internal class KlientPoczty
     {
-        private List<Skrzynka> skrzynkiPocztowe;
-        private List<WiadomoscEmail>? wszystkieWiadomosci;
-        private Skrzynka? wybranaSkrzynka;
+        protected List<Skrzynka> skrzynkiPocztowe;
+        protected List<WiadomoscEmail>? wszystkieWiadomosci;
+        protected Skrzynka? wybranaSkrzynka;
 
-        private static KlientPoczty? _instance;
+        protected static KlientPoczty? _instance;
 
         public static KlientPoczty Instance
         {
@@ -27,7 +27,7 @@ namespace AdapterFacade
             }
         }
 
-        private KlientPoczty()
+        protected KlientPoczty()
         {
             skrzynkiPocztowe = new List<Skrzynka>();
         }
@@ -92,7 +92,7 @@ namespace AdapterFacade
             }
         }
 
-        private void UstawDomyslnaSkrzynke(Skrzynka skrzynka)
+        protected void UstawDomyslnaSkrzynke(Skrzynka skrzynka)
         {
             if (!skrzynkiPocztowe.Any())
             {
@@ -100,12 +100,12 @@ namespace AdapterFacade
             }
         }
 
-        private bool AdresPoprawny(string adres)
+        protected bool AdresPoprawny(string adres)
         {
             return adres.Contains("@") && adres.Length > 3 && !adres.Contains(" ");
         }
 
-        private bool SkrzynkaIstnieje(string adres)
+        protected bool SkrzynkaIstnieje(string adres)
         {
             return skrzynkiPocztowe.FindAll(s => s.Adres.Equals(adres)).Any();
         }
@@ -178,7 +178,7 @@ namespace AdapterFacade
             }
         }
 
-        public void ZobaczWiadomosci()
+        public virtual void ZobaczWiadomosci()
         {
             if (wszystkieWiadomosci is null)
             {

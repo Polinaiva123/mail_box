@@ -4,7 +4,11 @@
     {
         public static void Main(string[] args)
         {
-            KlientPoczty klient = KlientPoczty.Instance;
+            // Wyświetla wiadomości w postaci HTML
+            // var klient = KlientPoczty.Instance;
+
+            // Wyświetla wiadomości w postaci tekstu
+            var klient = (KlientPocztyTekstowy) KlientPocztyTekstowy.Instance;
 
             klient.UtworzSkrzynke();
             klient.UtworzSkrzynke();
