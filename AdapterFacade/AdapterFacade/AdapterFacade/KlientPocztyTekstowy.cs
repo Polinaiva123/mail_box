@@ -1,18 +1,7 @@
-﻿internal class KlientPocztyTekstowy : KlientPoczty
+﻿// Facade
+internal class KlientPocztyTekstowy : KlientPoczty
 {
-    public static new KlientPoczty Instance
-    {
-        get
-        {
-            if (_instance is null)
-            {
-                _instance = new KlientPocztyTekstowy();
-            }
-            return _instance;
-        }
-    }
-
-    private KlientPocztyTekstowy() : base() { }
+    public KlientPocztyTekstowy() : base() { }
 
     public override void ZobaczWiadomosci()
     {

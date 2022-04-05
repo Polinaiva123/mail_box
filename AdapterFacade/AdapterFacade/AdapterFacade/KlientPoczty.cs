@@ -5,17 +5,25 @@ internal class KlientPoczty
     protected List<WiadomoscEmail>? wszystkieWiadomosci;
     protected Skrzynka? wybranaSkrzynka;
 
-    protected static KlientPoczty? _instance;
-
-    public static KlientPoczty Instance
+    public static KlientPoczty GetKlientPoczty()
     {
-        get
+        Console.WriteLine("W jakiej postaci wyświetlać wiadomości (html/TEKST)?: ");
+        string? wartosc = Console.ReadLine();
+
+        while (String.IsNullOrEmpty(wartosc))
         {
-            if (_instance is null)
-            {
-                _instance = new KlientPoczty();
-            }
-            return _instance;
+            Console.WriteLine("W jakiej postaci wyświetlać wiadomości (html/TEKST)?: ");
+            wartosc = Console.ReadLine();
+        }
+
+        switch (wartosc)
+        {
+            case "html":
+                return new KlientPoczty();
+            case "tekst":
+                return new KlientPocztyTekstowy();
+            default:
+                return new KlientPocztyTekstowy();
         }
     }
 
@@ -241,7 +249,6 @@ internal class KlientPoczty
                         zalacznikJakoPlik.CreateZalacznik("plik")
                     }
                 }
-
             };
 
             skrzynkiPocztowe.ForEach(s => s.DodajWiadomosci(wiadomosci));

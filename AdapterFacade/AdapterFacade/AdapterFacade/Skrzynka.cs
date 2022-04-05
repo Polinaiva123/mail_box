@@ -10,13 +10,6 @@
         skrzynka = new List<WiadomoscEmail>();
     }
 
-    public void ZobaczWiadomosci()
-    {
-        Console.WriteLine("Wiadomosci(" + skrzynka.Count + ") w skrzynce: ");
-        Console.WriteLine("");
-        skrzynka.ForEach(w => Console.WriteLine(w.ToString() + "\n"));
-    }
-
     public void DodajWiadomosc(WiadomoscEmail wiadomosc)
     {
         skrzynka.Add(wiadomosc);
