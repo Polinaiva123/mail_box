@@ -1,22 +1,31 @@
-﻿namespace AdapterFacade
+﻿var klient = GetKlientPoczty();
+
+klient.UtworzSkrzynke();
+klient.UtworzSkrzynke();
+klient.ZaladujPrzykladoweWiadomosci();
+klient.WybierzSkrzynke();
+klient.ZobaczWiadomosci();
+klient.UsunSkrzynke();
+
+
+static KlientPoczty GetKlientPoczty()
 {
-    internal class Program
+    Console.WriteLine("W jakiej postaci wyświetlać wiadomości (html/TEKST)?: ");
+    string? wartosc = Console.ReadLine();
+
+    while (String.IsNullOrEmpty(wartosc))
     {
-        public static void Main(string[] args)
-        {
-            // Wyświetla wiadomości w postaci HTML
-            // var klient = KlientPoczty.Instance;
+        Console.WriteLine("W jakiej postaci wyświetlać wiadomości (html/TEKST)?: ");
+        wartosc = Console.ReadLine();
+    }
 
-            // Wyświetla wiadomości w postaci tekstu
-            var klient = (KlientPocztyTekstowy) KlientPocztyTekstowy.Instance;
-
-            klient.UtworzSkrzynke();
-            klient.UtworzSkrzynke();
-            klient.ZaladujPrzykladoweWiadomosci();
-            klient.WybierzSkrzynke();
-            klient.UsunSkrzynke();
-            klient.ZobaczWiadomosci();
-
-        }
+    switch (wartosc)
+    {
+        case "html":
+            return KlientPoczty.Instance;
+        case "tekst":
+            return KlientPocztyTekstowy.Instance;
+        default:
+            return KlientPocztyTekstowy.Instance;
     }
 }

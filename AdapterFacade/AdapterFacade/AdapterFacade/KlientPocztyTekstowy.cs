@@ -1,43 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AdapterFacade
+﻿internal class KlientPocztyTekstowy : KlientPoczty
 {
-    internal class KlientPocztyTekstowy : KlientPoczty
+    public static new KlientPoczty Instance
     {
-        public static new KlientPoczty Instance
+        get
         {
-            get
+            if (_instance is null)
             {
-                if (_instance is null)
-                {
-                    _instance = new KlientPocztyTekstowy();
-                }
-                return _instance;
+                _instance = new KlientPocztyTekstowy();
             }
+            return _instance;
         }
+    }
 
-        private KlientPocztyTekstowy() : base() { }
+    private KlientPocztyTekstowy() : base() { }
 
-        public override void ZobaczWiadomosci()
+    public override void ZobaczWiadomosci()
+    {
+        if (wszystkieWiadomosci is null)
         {
-            if (wszystkieWiadomosci is null)
-            {
-                SynchronizujPoczte();
-            }
-            Console.WriteLine("Wiadomości:\n");
+            SynchronizujPoczte();
+        }
+        Console.WriteLine("Wiadomości:\n");
 
-            if (wszystkieWiadomosci!.Any())
-            {
-                Console.WriteLine(wszystkieWiadomosci!.Select(w => new HTMLWiadomoscEmail(w).GetZrodlo().ToString()).ToList().Aggregate("", (wynik, text) => wynik + text + "\n\n"));
-            }
-            else
-            {
-                Console.WriteLine("Nie masz żadnych wiadomości");
-            }
+        if (wszystkieWiadomosci!.Any())
+        {
+            Console.WriteLine(wszystkieWiadomosci!.Select(w => new HTMLWiadomoscEmail(w).GetZrodlo().ToString()).ToList().Aggregate("", (wynik, text) => wynik + text + "\n\n"));
+        }
+        else
+        {
+            Console.WriteLine("Nie masz żadnych wiadomości");
         }
     }
 }

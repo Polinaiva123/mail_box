@@ -1,22 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AdapterFacade
+﻿internal class ZalacznikJakoPlikFactory : ZalacznikFactory
 {
-    internal class ZalacznikJakoPlikFactory : ZalacznikFactory
+    public override Zalacznik CreateZalacznik(string rodzaj)
     {
-        public override Zalacznik CreateZalacznik(string rodzaj)
+        switch (rodzaj.ToLower())
         {
-            switch (rodzaj.ToLower())
-            {
-                case "plik":
-                    return new Plik();
-                default:
-                    throw new ApplicationException("Nie rozpoznany rodzaj zalacznika");
-            }
+            case "plik":
+                return new Plik();
+            default:
+                throw new ApplicationException("Nie rozpoznany rodzaj zalacznika");
         }
     }
 }
