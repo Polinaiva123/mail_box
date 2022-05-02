@@ -1,0 +1,42 @@
+﻿@page
+@model App.Pages.NewModel
+@{
+}
+<style>
+form {
+    display: flex;
+    flex-direction: column;
+
+    gap: 1rem;
+}
+
+form textarea {
+    width: 100%;
+}
+</style>
+<div class="text-center">
+    <h1 class="display-4">Utwórz wiadomość email</h1>
+
+    <div>
+        @{
+            if (Model.Sent)
+            {
+                <div>
+                    <p>Stworzono wiadomość email</p>
+                    <a asp-page="/Index">Strona główna</a>
+                </div>
+            }
+            else
+            {
+                <form method="post">
+                    <input type="text" asp-for="Name" placeholder="Jan Kowalski" />
+                    <input type="text" asp-for="From" placeholder="jankowalski@wp.pl" />
+                    <input type="text" asp-for="To" placeholder="annanowak@gmail.com" />
+                    <input type="text" asp-for="Title" placeholder="Cześć!" />
+                    <textarea asp-for="Text" placeholder="Napisz wiadomość..."></textarea>
+                    <input type="submit" />
+                </form>
+            }
+        }
+    </div>
+</div>

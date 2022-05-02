@@ -1,0 +1,38 @@
+﻿@page
+@using App.Pages
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Skrzyńka pocztowa</h1>
+
+    <a asp-page="/New">Utwórz wiadomość email</a>
+    <a asp-page="/Clear">Wyczyść wszystko</a>
+
+    <div class="container">
+        @{
+            if (Model.Mails is null)
+            {
+                <p>Loading...</p>
+            }
+            else if (Model.Mails.Any())
+            {
+                @foreach (var mail in Model.Mails)
+                {
+                    <div class="mail">
+                        <label>Od: <span>@mail["name"] (@mail["from"])</span></label>
+                        <label>Do: <span>@mail["to"]</span></label>
+                        <label>Tytuł <span>@mail["title"]</span></label>
+                        <label>Treść <span>@mail["text"]</span></label>
+                    </div>
+                }
+            }
+            else
+            {
+                <p>Skrzyńka jest pusta</p>
+            }
+        }
+    </div>
+</div>
