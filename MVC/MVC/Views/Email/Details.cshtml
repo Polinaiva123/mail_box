@@ -1,0 +1,21 @@
+﻿@model EmailDetailsViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Wiadomość @Model.Email.Title</h1>
+
+<p>
+    <a asp-action="Index">Wszystkie wiadomości</a>
+    <a asp-action="Delete" asp-route-id=@Model.Email.Id>Usuń wiadomość</a>
+</p>
+
+<div class="email">
+    <label>Nadawca: <span>@Model.Email.Name (@Model.Email.From)</span></label>
+    <label>Odbiorca: <span>@Model.Email.To</span></label>
+    <div class="separator"></div>
+    <label><span>@Model.Email.Title</span></label>
+    <div class="separator"></div>
+    <label><span>@Model.Email.Text</span></label>
+</div>

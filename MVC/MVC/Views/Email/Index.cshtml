@@ -1,0 +1,40 @@
+﻿@model EmailViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Wszystkie wiadomości</h1>
+
+<p>
+    <a asp-action="Create">Utwórz wiadomość</a>
+    <a asp-action="Clear">Usuń wszystkie wiadomości</a>
+    <div>
+    <p>Wyszukaj wiadomość</p>
+    <form asp-controller="Email" asp-action="Search" method="POST">
+        <input type="text" name="formData.Search" />
+        <input type="submit" value="Szukaj" />
+    </form>
+    </div>
+</p>
+
+<div class="emails">
+    @if (!Model.Emails.Any())
+    {
+        <p>Skrzyńka jest pusta</p>
+    }
+    else
+    {
+        foreach (var email in Model.Emails)
+        {
+            <div class="email">
+                <label><span>@email.Name (@email.From)</span></label>
+                <label><span>@email.Title</span></label>
+                <div>
+                    @Html.ActionLink("Przeglądaj", "Details", "Email", new { id = @email.Id }, null)
+                    @Html.ActionLink("Usuń", "Delete", "Email", new { id = @email.Id }, null)
+                </div>
+            </div>
+        }
+    }
+</div>

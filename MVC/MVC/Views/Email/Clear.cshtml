@@ -1,0 +1,25 @@
+﻿@model EmailActionViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Usuń wszystkie wiadomości</h1>
+
+@if (Model.ActionCompleted)
+{
+    <div>
+        <p>Wyczyszczono wszystkie wiadomości</p>
+        <a asp-action="Index">Wszystkie wiadomości</a>
+    </div>
+}
+else
+{
+    <div>
+        <p>Czy naprawdę chcesz usunąć wszystkie wiadomości?</p>
+        <form asp-controller="Email" asp-action="Clear" method="POST">
+            <input type="submit" value="Usuń" />
+        </form>
+        <a asp-action="Index">Cofnij</a>
+    </div>
+}
