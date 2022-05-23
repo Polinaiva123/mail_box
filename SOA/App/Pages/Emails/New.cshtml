@@ -1,0 +1,30 @@
+﻿@page
+@model App.Pages.Emails.NewModel
+@{
+}
+
+<style>
+form {
+    display: flex;
+    flex-direction: column;
+
+    gap: 1rem;
+}
+
+form textarea {
+    width: 100%;
+}
+</style>
+
+<h2>Wyślij wiadomość</h2>
+<a asp-page="./Index">Wszystkie wiadomości</a>
+
+<form method="POST">
+    <input type="hidden" asp-for="Email.From.Id" value=@Model.Konto!.Id required />
+    <input type="hidden" asp-for="Email.From.Name" value=@Model.Konto!.Name required />
+    <input type="hidden" asp-for="Email.From.AdresEmail" value=@Model.Konto!.AdresEmail required />
+    <label>Do: <input type="text" asp-for="Email.To.AdresEmail" placeholder="annanowak@gmail.com" required /></label>
+    <label>Tytuł: <input type="text" asp-for="Email.Title" placeholder="Cześć!" required /></label>
+    <label>Treść: <textarea asp-for="Email.Text" placeholder="Napisz wiadomość..." required></textarea></label>
+    <input type="submit" value="Wyślij" />
+</form>

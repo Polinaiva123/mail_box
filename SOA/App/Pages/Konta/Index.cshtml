@@ -1,0 +1,37 @@
+﻿@page
+@model App.Pages.Konta.IndexModel
+@{
+}
+
+<h2>Wybierz konto</h2>
+<div class="konta">
+    @if (Model.Konta is null)
+    {
+        <p>Ładowanie...</p>
+    }
+    else
+    {
+        <form method="post">
+            <select asp-for="SelectedKontoId">
+                @foreach (var konto in Model.Konta)
+                {
+                    <option value=@konto.Id>@konto.Name (@konto.AdresEmail)</option>
+                }
+            </select>
+
+            <input type="submit" value="Wybierz konto" />
+        </form>
+    }
+</div>
+
+<p>albo...</p>
+
+<h2>Utwórz nowe konto</h2>
+<div class="new-konto-form">
+    <form method="POST">
+        <label>Imię <input type="text" asp-for="NewKonto.Name" placeholder="Jan Kowalski" required /></label>
+        <label>Adres poczty <input type="email" asp-for="NewKonto.AdresEmail" placeholder="jankowalski@wp.pl" required /></label>
+
+        <input type="submit" value="Utwórz konto" />
+    </form>
+</div>

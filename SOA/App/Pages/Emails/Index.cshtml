@@ -1,0 +1,27 @@
+﻿@page
+@model App.Pages.Emails.IndexModel
+@{
+}
+
+<h2>Wiadomości użytwkownika @Model.Konto!.Name (@Model.Konto!.AdresEmail)</h2>
+<a asp-page="../Konta/Profile">Zobacz profil</a>
+<a asp-page="./New">Utwórz wiadomość</a>
+
+<div class="emails">
+    @if (Model.Emails is null)
+    {
+        <p>Ładowanie...</p>
+    }
+    else
+    {
+        foreach (var email in Model.Emails)
+        {
+            <div class="email">
+                <label><span>@email.From.Name (@email.From.AdresEmail)</span></label>
+                <label><span>@email.Title</span></label>
+
+                <a asp-page="./Details" asp-route-id=@email.Id>Zobacz wiadomość</a>
+            </div>
+        }
+    }
+</div>

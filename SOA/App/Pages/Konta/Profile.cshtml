@@ -1,0 +1,19 @@
+﻿@page
+@model App.Pages.Konta.ProfileModel
+@{
+}
+
+<div class="konto">
+    <label>Imię <span>@Model.Konto!.Name</span></label>
+    <label>Adres email <span>@Model.Konto!.AdresEmail</span></label>
+
+    <form method="post">
+        <input type="hidden" asp-for="Action" value="logout" />
+        <input type="submit" value="Wyloguj się" />
+    </form>
+
+    <form method="post">
+        <input type="hidden" asp-for="Action" value="deleteKonto" />
+        <input type="submit" value="Usuń konto" class="red" />
+    </form>
+</div>
